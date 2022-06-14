@@ -10,13 +10,28 @@ const GlobalStyle = {
     backgroundAttachment: 'fixed',
     backgroundPosition: 'center',
     height: '100vh',
+    fontSize: 20,
   },
   pageTitle: {
     fontWeight: 'bold' as 'bold',
-    fontSize: 30,
+    fontSize: 45,
+    textAlign: 'center' as 'center',
+    marginBottom: 5,
+  },
+  pageSubTitle: {
+    fontWeight: 'bold' as 'bold',
+    fontSize: 25,
+    textAlign: 'center' as 'center',
+    marginBottom: 40,
   },
   homePage: {
     paddingTop: 30,
+  },
+  potCard: {
+    opacity: 0.75,
+    backgroundColor: 'purple',
+    backdropFilter: 'blur(10px)',
+    borderRadius: 15,
   },
 };
 
