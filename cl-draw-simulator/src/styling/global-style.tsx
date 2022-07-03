@@ -10,7 +10,7 @@ const GlobalStyle = {
     backgroundAttachment: 'fixed',
     backgroundPosition: 'center',
     height: '100vh',
-    fontSize: 20,
+    // fontSize: 20,
   },
   pageTitle: {
     fontWeight: 'bold' as 'bold',
@@ -28,6 +28,12 @@ const GlobalStyle = {
     paddingTop: 30,
   },
   potCard: {
+    opacity: 0.75,
+    backgroundColor: 'purple',
+    backdropFilter: 'blur(10px)',
+    borderRadius: 15,
+  },
+  overviewCard: {
     opacity: 0.75,
     backgroundColor: 'purple',
     backdropFilter: 'blur(10px)',
