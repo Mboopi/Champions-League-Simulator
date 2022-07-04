@@ -3,162 +3,162 @@
         {
             "club_name": "Real Madrid",
             "country": "Spain",
-            "pot": "1"
+            "pot": 1
         },
         {
             "club_name": "Eintracht Frankfurt",
             "country": "Germany",
-            "pot": "1"
+            "pot": 1
         },
         {
             "club_name": "Manchester City",
             "country": "United Kingdom",
-            "pot": "1"
+            "pot": 1
         },
         {
             "club_name": "AC Milan",
             "country": "Italy",
-            "pot": "1"
+            "pot": 1
         },
         {
             "club_name": "Bayern München",
             "country": "Germany",
-            "pot": "1"
+            "pot": 1
         },
         {
             "club_name": "Paris Saint-Germain",
             "country": "France",
-            "pot": "1"
+            "pot": 1
         },
         {
             "club_name": "Porto",
             "country": "Portugal",
-            "pot": "1"
+            "pot": 1
         },
         {
             "club_name": "Ajax",
             "country": "Netherlands",
-            "pot": "1"
+            "pot": 1
         }, 
         {
             "club_name": "Liverpool",
             "country": "United Kingdom",
-            "pot": "2"
+            "pot": 2
         },
         {
             "club_name": "Chelsea",
             "country": "United Kingdom",
-            "pot": "2"
+            "pot": 2
         },
         {
             "club_name": "FC Barcelona",
             "country": "Spain",
-            "pot": "2"
+            "pot": 2
         },
         {
             "club_name": "Juventus",
             "country": "Italy",
-            "pot": "2"
+            "pot": 2
         },
         {
             "club_name": "Atlético Madrid",
             "country": "Spain",
-            "pot": "2"
+            "pot": 2
         },
         {
             "club_name": "Sevilla",
             "country": "Spain",
-            "pot": "2"
+            "pot": 2
         },
         {
             "club_name": "RB Leipzig",
             "country": "Germany",
-            "pot": "2"
+            "pot": 2
         },
         {
             "club_name": "Tottenham Hotspur",
             "country": "Italy",
-            "pot": "2"
+            "pot": 2
         },
         {
             "club_name": "Borussia Dortmund",
             "country": "Germany",
-            "pot": "3"
+            "pot": 3
         },
         {
             "club_name": "RB Salzburg",
             "country": "Austria",
-            "pot": "3"
+            "pot": 3
         },
         {
             "club_name": "Shaktar Donetsk",
             "country": "Ukraine",
-            "pot": "3"
+            "pot": 3
         },
         {
             "club_name": "Internazionale",
             "country": "Italy",
-            "pot": "3"
+            "pot": 3
         },
         {
             "club_name": "Napoli",
             "country": "Italy",
-            "pot": "3"
+            "pot": 3
         },
         {
             "club_name": "Benfica",
             "country": "Portugal",
-            "pot": "3"
+            "pot": 3
         },
         {
             "club_name": "Sporting CP",
             "country": "Portugal",
-            "pot": "3"
+            "pot": 3
         },
         {
             "club_name": "Bayer Leverkussen",
             "country": "Germany",
-            "pot": "3"
+            "pot": 3
         },
         {
             "club_name": "Rangers FC",
             "country": "United Kingdom",
-            "pot": "4"
+            "pot": 4
         },
         {
             "club_name": "Dinamo Zagreb",
             "country": "Croatia",
-            "pot": "4"
+            "pot": 4
         },
         {
             "club_name": "Red Star Belgrade",
             "country": "Serbia",
-            "pot": "4"
+            "pot": 4
         },
         {
             "club_name": "Olympique Marseille",
             "country": "France",
-            "pot": "4"
+            "pot": 4
         },
         {
             "club_name": "Olympiacos",
             "country": "Greece",
-            "pot": "4"
+            "pot": 4
         },
         {
             "club_name": "FC Kopenhagen",
             "country": "Denmark",
-            "pot": "4"
+            "pot": 4
         },
         {
             "club_name": "Club Brugge",
             "country": "Belgium",
-            "pot": "4"
+            "pot": 4
         },
         {
             "club_name": "Celtic",
             "country": "United Kingdom",
-            "pot": "4"
+            "pot": 4
         }
     ]
 }
