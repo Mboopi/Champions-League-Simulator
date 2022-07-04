@@ -12,7 +12,7 @@
         },
         {
             "club_name": "Manchester City",
-            "country": "England",
+            "country": "United Kingdom",
             "pot": "1"
         },
         {
@@ -37,17 +37,17 @@
         },
         {
             "club_name": "Ajax",
-            "country": "The Netherlands",
+            "country": "Netherlands",
             "pot": "1"
         }, 
         {
             "club_name": "Liverpool",
-            "country": "England",
+            "country": "United Kingdom",
             "pot": "2"
         },
         {
             "club_name": "Chelsea",
-            "country": "England",
+            "country": "United Kingdom",
             "pot": "2"
         },
         {
@@ -122,7 +122,7 @@
         },
         {
             "club_name": "Rangers FC",
-            "country": "Scotland",
+            "country": "United Kingdom",
             "pot": "4"
         },
         {
@@ -157,7 +157,7 @@
         },
         {
             "club_name": "Celtic",
-            "country": "Scotland",
+            "country": "United Kingdom",
             "pot": "4"
         }
     ]
