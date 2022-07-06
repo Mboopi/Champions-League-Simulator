@@ -18,8 +18,10 @@ interface ClubType {
 interface GroupType {
   name: string;
   clubs: ClubType[];
+  getName(): string;
   addClub(club: ClubType): void;
-  checkCommonCountries(country: string): boolean;
+  checkCommonCountries(club: ClubType): boolean;
+  checkCommonPots(club: ClubType): boolean;
 }
 
 export type { DataType, ClubType, GroupType };

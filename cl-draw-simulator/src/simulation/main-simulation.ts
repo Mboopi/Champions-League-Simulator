@@ -19,9 +19,11 @@ class Simulation {
 
   clubsRemaining: ClubType[] = []; // Array of Club objects, that still have to be drawn.
   groups: GroupType[] = []; // Array of Group objects.
+  availableGroups: GroupType[] = []; // Array of available groups, which will reset every time 8 clubs have been drawn.
 
   constructor(data: Array<DataType>) {
     this.data = data;
+    this.initializeSimulation();
   }
 
   /**
@@ -36,9 +38,10 @@ class Simulation {
       this.clubsRemaining.push(club);
     }
 
-    for (const groupName in this.groupNames) {
-      const group = new Group(groupName);
+    for (let i = 0; i < this.groupNames.length; i++) {
+      const group = new Group(this.groupNames[i]);
       this.groups.push(group);
+      this.availableGroups.push(group);
     }
   }
 
@@ -48,11 +51,19 @@ class Simulation {
    */
   public isValidDraw(club: ClubType, group: GroupType): boolean {
     let isValid = true;
-    if (group.checkCommonCountries(club.getCountry())) {
+    // Clubs may not be from the same countries.
+    if (group.checkCommonCountries(club)) {
       isValid = false;
     }
 
-    return true;
+    // Clubs may not be from the same pot.
+    // Iterate over availableGroups since only the groups in availableGroups will be tried.
+    for (let i = 0; i < this.availableGroups.length; i++) {
+      if (group.checkCommonPots(club)) {
+        isValid = false;
+      }
+    }
+    return isValid;
   }
 
   /**
@@ -61,39 +72,58 @@ class Simulation {
    */
   public runSimulationStep() {
     let randomClubIndex = getRandomInt(0, this.clubsRemaining.length); // Draw a random club.
-    const randomGroupIndex = getRandomInt(0, this.groups.length); // Draw a random group.
+    let drawnClub = this.clubsRemaining[randomClubIndex];
 
-    // The drawn club must be from the required pot.
-    while (this.clubsRemaining[randomClubIndex].getPot() != this.currentPot) {
+    let randomGroupIndex = getRandomInt(0, this.groups.length); // Draw a random group.
+    let drawnGroup = this.availableGroups[randomGroupIndex];
+
+    // Keep redrawing while the drawn club is not from the required pot.
+    while (drawnClub.getPot() !== this.currentPot) {
       randomClubIndex = getRandomInt(0, this.clubsRemaining.length);
+      drawnClub = this.clubsRemaining[randomClubIndex];
     }
 
-    if (
-      // If the draw is valid, then add the club to the group.
-      this.isValidDraw(
-        this.clubsRemaining[randomClubIndex],
-        this.groups[randomGroupIndex]
-      )
+    // Keep redrawing while the drawn group is not valid.
+    while (this.isValidDraw(drawnClub, drawnGroup) === false) {
+      randomGroupIndex = getRandomInt(0, this.groups.length);
+      drawnGroup = this.availableGroups[randomGroupIndex];
 
-      // Increase currentPot counter after every 8 clubs have been drawn.
-    ) {
-      return;
-    } else {
-      // Else discard and draw again.
-      return;
+      // Need to add check in case it's impossible to place the club in an available group,
+      // then should return something ...
     }
-  }
 
-  /**
-   * Method that returns the group array of Group objects.
-   */
-  public getGroups() {
+    // Add the club to the group.
+    drawnGroup.addClub(drawnClub);
+    console.log(
+      'Added ',
+      drawnClub.getName(),
+      'to group ',
+      drawnGroup.getName()
+    );
+
+    // Remove the club and the group from the list of available clubs and groups, respectively.
+    this.clubsRemaining.splice(randomClubIndex);
+    this.availableGroups.splice(randomGroupIndex);
+
+    /**
+     * After every 8 clubs have been assigned to the groups, the list of availabe groups has no groups left.
+     * Then 1 round has been finished and the next round of draws begins.
+     */
+    if (this.availableGroups.length === 0) {
+      // Increase the currentPot counter.
+      this.currentPot++;
+
+      // Reset the list of available groups
+      this.availableGroups = this.groups;
+    }
+
+    // Return the group array of Group objects.
     return this.groups;
   }
 }
 
 // Remove...
-const test = new Simulation(data_2022.group_stage);
-test.initializeSimulation();
+// const test = new Simulation(data_2022.group_stage);
+// test.initializeSimulation();
 
 export default Simulation;

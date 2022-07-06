@@ -29,7 +29,7 @@ const renderClubInfo = (data: Array<object>, potNumber: number) => {
   });
 };
 
-const Clubs = () => {
+const ClubsOverview = () => {
   const drawMode = 'group_stage';
 
   return (
@@ -56,4 +56,4 @@ const Clubs = () => {
   );
 };
 
-export default Clubs;
+export default ClubsOverview;

@@ -3,7 +3,8 @@ import data_2022 from '../data/data-2022.json';
 import GlobalStyle from '../styling/global-style';
 import OverviewCard from '../components/overview-card';
 import { Col, Row } from 'react-bootstrap';
-import Clubs from '../components/clubs';
+import SimulationOverview from '../components/simulation';
+import ClubsOverview from '../components/clubs';
 
 const HomePage = () => {
   // const [drawMode, setDrawMode] = useState('group_stage');
@@ -19,10 +20,13 @@ const HomePage = () => {
 
       <Row>
         <Col>
-          <OverviewCard title={'Participating Clubs'} content={<Clubs />} />
+          <OverviewCard
+            title={'Participating Clubs'}
+            content={<ClubsOverview />}
+          />
         </Col>
         <Col>
-          <OverviewCard title={'Simulation'} />
+          <OverviewCard title={'Simulation'} content={<SimulationOverview />} />
         </Col>
       </Row>
     </div>
@@ -30,8 +34,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
-/*
-TO DO:
--Show overview of all clubs with logo or country flag
-*/

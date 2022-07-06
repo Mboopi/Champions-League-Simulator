@@ -1,7 +1,7 @@
 class Club {
-  name: string = ' ';
-  country: string = ' ';
-  pot: number = 0;
+  name: string;
+  country: string;
+  pot: number;
 
   constructor(name: string, country: string, pot: number) {
     this.name = name;
