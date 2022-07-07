@@ -1,4 +1,3 @@
-import * as data_2022 from '../data/data-2022.json'; // Remove...
 import Club from './club';
 import Group from './group';
 import { ClubType, DataType, GroupType } from './types/interfaces';
@@ -12,14 +11,28 @@ function getRandomInt(min: number, max: number) {
   return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is. inclusive
 }
 
+/**
+ * Function to check how many groups are currently available.
+ */
+function countAvailableGroups(groups: Array<GroupType>) {
+  let count = 0;
+  for (let i = 0; i < groups.length; i++) {
+    if (groups[i].getAvailability()) {
+      count++;
+    }
+  }
+
+  return count;
+}
+
 class Simulation {
   data: DataType[] = []; // Array of dataType objects, which is basically just the objects in the data array.
   groupNames = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
-  currentPot = 1; // Track from which pot, clubs must be drawn.
+  currentPot = 1; // Track from which pot clubs must be drawn.
 
   clubsRemaining: ClubType[] = []; // Array of Club objects, that still have to be drawn.
   groups: GroupType[] = []; // Array of Group objects.
-  availableGroups: GroupType[] = []; // Array of available groups, which will reset every time 8 clubs have been drawn.
+  // availableGroups: GroupType[] = []; // Array of available groups, which will reset every time 8 clubs have been drawn.
 
   constructor(data: Array<DataType>) {
     this.data = data;
@@ -39,9 +52,8 @@ class Simulation {
     }
 
     for (let i = 0; i < this.groupNames.length; i++) {
-      const group = new Group(this.groupNames[i]);
+      const group = new Group(this.groupNames[i], true);
       this.groups.push(group);
-      this.availableGroups.push(group);
     }
   }
 
@@ -51,18 +63,16 @@ class Simulation {
    */
   public isValidDraw(club: ClubType, group: GroupType): boolean {
     let isValid = true;
-    // Clubs may not be from the same countries.
-    if (group.checkCommonCountries(club)) {
+    // Clubs may not be from the same countries and pot.
+    if (group.checkCommonCountries(club) || group.checkCommonPots(club)) {
       isValid = false;
     }
 
-    // Clubs may not be from the same pot.
-    // Iterate over availableGroups since only the groups in availableGroups will be tried.
-    for (let i = 0; i < this.availableGroups.length; i++) {
-      if (group.checkCommonPots(club)) {
-        isValid = false;
-      }
+    // Group should availability status should be true.
+    if (group.getAvailability() === false) {
+      isValid = false;
     }
+
     return isValid;
   }
 
@@ -75,7 +85,7 @@ class Simulation {
     let drawnClub = this.clubsRemaining[randomClubIndex];
 
     let randomGroupIndex = getRandomInt(0, this.groups.length); // Draw a random group.
-    let drawnGroup = this.availableGroups[randomGroupIndex];
+    let drawnGroup = this.groups[randomGroupIndex];
 
     // Keep redrawing while the drawn club is not from the required pot.
     while (drawnClub.getPot() !== this.currentPot) {
@@ -86,7 +96,7 @@ class Simulation {
     // Keep redrawing while the drawn group is not valid.
     while (this.isValidDraw(drawnClub, drawnGroup) === false) {
       randomGroupIndex = getRandomInt(0, this.groups.length);
-      drawnGroup = this.availableGroups[randomGroupIndex];
+      drawnGroup = this.groups[randomGroupIndex];
 
       // Need to add check in case it's impossible to place the club in an available group,
       // then should return something ...
@@ -94,27 +104,26 @@ class Simulation {
 
     // Add the club to the group.
     drawnGroup.addClub(drawnClub);
-    console.log(
-      'Added ',
-      drawnClub.getName(),
-      'to group ',
-      drawnGroup.getName()
-    );
+    console.log('Added', drawnClub.getName(), 'to', drawnGroup.getName());
 
-    // Remove the club and the group from the list of available clubs and groups, respectively.
-    this.clubsRemaining.splice(randomClubIndex);
-    this.availableGroups.splice(randomGroupIndex);
+    // Remove the club from the list of available clubs.
+    this.clubsRemaining.splice(randomClubIndex, 1);
+
+    // Set the availability status of the group to false.
+    this.groups[randomGroupIndex].setAvailability(false);
 
     /**
-     * After every 8 clubs have been assigned to the groups, the list of availabe groups has no groups left.
-     * Then 1 round has been finished and the next round of draws begins.
+     * After every 8 clubs have been assigned to the groups, all groups are unavailable.
+     * Then 1 round has been finished and the next round of draws begins, so reset status.
      */
-    if (this.availableGroups.length === 0) {
+    if (countAvailableGroups(this.groups) < 1) {
       // Increase the currentPot counter.
       this.currentPot++;
 
-      // Reset the list of available groups
-      this.availableGroups = this.groups;
+      // Reset the availability status of all groups.
+      for (let i = 0; i < this.groups.length; i++) {
+        this.groups[i].setAvailability(true);
+      }
     }
 
     // Return the group array of Group objects.
