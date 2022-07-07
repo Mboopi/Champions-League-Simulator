@@ -58,6 +58,17 @@ class Simulation {
   }
 
   /**
+   * Method that resets the simulation.
+   */
+  public resetSimulation() {
+    this.clubsRemaining = [];
+    this.groups = [];
+    this.currentPot = 1;
+
+    this.initializeSimulation();
+  }
+
+  /**
    * Method that returns true if a given club may be assigned to a given group, according to the drawing rules
    * and false otherwise.
    */

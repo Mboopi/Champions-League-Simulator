@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Button, Col, Row } from 'react-bootstrap';
 import data_2022 from '../data/data-2022.json';
 import Simulation from '../simulation/main-simulation';
@@ -10,8 +10,8 @@ const renderGroup = (group: GroupType) => {
   return group.getClubs().map((club: ClubType, i: number) => {
     return (
       <Row key={i}>
-         <p style={{ fontSize: 12 }}>{club.getName()}</p>
-        </Row>
+        <p style={{ fontSize: 12 }}>{club.getName()}</p>
+      </Row>
     )
   })
 }
@@ -19,43 +19,43 @@ const renderGroup = (group: GroupType) => {
 const renderAllGroups = (groups: Array<GroupType>) => {
   return (
     <>
-    <Row>
-      <Col>
-        <b>Group A</b>
-        {renderGroup(groups[0])}
-      </Col>
-      <Col>
-        <b>Group B</b>
-        {renderGroup(groups[1])}
-      </Col>
-      <Col>
-        <b>Group C</b>
-        {renderGroup(groups[2])}
-      </Col>
-      <Col>
-        <b>Group D</b>
-        {renderGroup(groups[3])}
-      </Col>
+      <Row>
+        <Col>
+          <b>Group A</b>
+          {renderGroup(groups[0])}
+        </Col>
+        <Col>
+          <b>Group B</b>
+          {renderGroup(groups[1])}
+        </Col>
+        <Col>
+          <b>Group C</b>
+          {renderGroup(groups[2])}
+        </Col>
+        <Col>
+          <b>Group D</b>
+          {renderGroup(groups[3])}
+        </Col>
       </Row>
 
       <Row>
-      <Col>
-        <b>Group E</b>
-        {renderGroup(groups[4])}
-      </Col>
-      <Col>
-        <b>Group F</b>
-        {renderGroup(groups[5])}
-      </Col>
-      <Col>
-        <b>Group G</b>
-        {renderGroup(groups[6])}
-      </Col>
-      <Col>
-        <b>Group H</b>
-        {renderGroup(groups[7])}
-      </Col>
-    </Row>
+        <Col>
+          <b>Group E</b>
+          {renderGroup(groups[4])}
+        </Col>
+        <Col>
+          <b>Group F</b>
+          {renderGroup(groups[5])}
+        </Col>
+        <Col>
+          <b>Group G</b>
+          {renderGroup(groups[6])}
+        </Col>
+        <Col>
+          <b>Group H</b>
+          {renderGroup(groups[7])}
+        </Col>
+      </Row>
     </>
   )
 }
@@ -72,10 +72,6 @@ const SimulationOverview = () => {
     console.log(groupOverview)
   };
 
-  // useEffect(() => {
-  //   drawClub()
-  // })
-
   return (
     <>
       {groupOverview.length > 0 && renderAllGroups(groupOverview)}
@@ -83,7 +79,10 @@ const SimulationOverview = () => {
         Draw a club
       </Button>
       <Button
-        onClick={() => console.log('RESET...')}
+        onClick={() => {
+          simulation.resetSimulation();
+          setGroupOverview([])
+        }}
         variant="danger"
       >
         Restart
