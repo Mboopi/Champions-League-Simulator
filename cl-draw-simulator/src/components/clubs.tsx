@@ -4,12 +4,6 @@ import data_2022 from '../data/data-2022.json';
 
 const lookup = require('country-code-lookup');
 
-// type clubEntry = {
-//   club_name: string;
-//   country: string;
-//   pot: number;
-// };
-
 const getCountryCode = (country: string) => {
   return lookup.byCountry(country).iso2;
 };

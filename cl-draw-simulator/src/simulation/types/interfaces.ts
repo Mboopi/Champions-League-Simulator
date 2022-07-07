@@ -23,6 +23,7 @@ interface GroupType {
   getAvailability(): boolean;
   setAvailability(newValue: boolean): void;
   addClub(club: ClubType): void;
+  getClubs(): ClubType[];
   checkCommonCountries(club: ClubType): boolean;
   checkCommonPots(club: ClubType): boolean;
 }

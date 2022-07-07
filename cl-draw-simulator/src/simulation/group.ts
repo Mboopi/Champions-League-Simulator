@@ -19,6 +19,11 @@ class Group {
     this.clubs.push(club);
   }
 
+  // Method to get the clubs in the group.
+  public getClubs() {
+    return this.clubs;
+  }
+
   // Method to get the availability status of the group.
   public getAvailability() {
     return this.available;

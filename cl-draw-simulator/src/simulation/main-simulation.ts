@@ -126,6 +126,11 @@ class Simulation {
       }
     }
 
+    // If all clubs have been drawn, then running the next step should just reset everything.
+    // if (this.clubsRemaining.length < 1) {
+    //   this.initializeSimulation();
+    // }
+
     // Return the group array of Group objects.
     return this.groups;
   }
