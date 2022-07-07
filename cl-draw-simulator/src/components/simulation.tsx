@@ -75,7 +75,7 @@ const SimulationOverview = () => {
   return (
     <>
       {groupOverview.length > 0 && renderAllGroups(groupOverview)}
-      <Button onClick={() => drawClub()} variant='light' style={{ marginRight: 10 }}>
+      <Button onClick={() => drawClub()} variant='light' style={{ marginRight: 10 }} disabled={simulation.isDone}>
         Draw a club
       </Button>
       <Button

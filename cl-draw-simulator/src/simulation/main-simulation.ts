@@ -29,6 +29,7 @@ class Simulation {
   data: DataType[] = []; // Array of dataType objects, which is basically just the objects in the data array.
   groupNames = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
   currentPot = 1; // Track from which pot clubs must be drawn.
+  isDone = false; // Whether the simulation has been finished.
 
   clubsRemaining: ClubType[] = []; // Array of Club objects, that still have to be drawn.
   groups: GroupType[] = []; // Array of Group objects.
@@ -64,6 +65,7 @@ class Simulation {
     this.clubsRemaining = [];
     this.groups = [];
     this.currentPot = 1;
+    this.isDone = false;
 
     this.initializeSimulation();
   }
@@ -138,9 +140,10 @@ class Simulation {
     }
 
     // If all clubs have been drawn, then running the next step should just reset everything.
-    // if (this.clubsRemaining.length < 1) {
-    //   this.initializeSimulation();
-    // }
+    if (this.clubsRemaining.length < 1) {
+      //this.resetSimulation();
+      this.isDone = true;
+    }
 
     // Return the group array of Group objects.
     return this.groups;
