@@ -68,8 +68,6 @@ const SimulationOverview = () => {
     const groups = simulation.runSimulationStep();
 
     setGroupOverview([...groups]) // Otherwise React doesn't see the state as updated as arrays are checked by reference.
-
-    console.log(groupOverview)
   };
 
   return (
