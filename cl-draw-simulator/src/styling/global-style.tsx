@@ -27,17 +27,16 @@ const GlobalStyle = {
   homePage: {
     paddingTop: 30,
   },
-  potCard: {
-    opacity: 0.75,
-    backgroundColor: 'purple',
-    backdropFilter: 'blur(10px)',
+  overviewCard: {
+    backgroundColor: 'rgba(0, 0, 0, 0.33)',
     borderRadius: 15,
   },
-  overviewCard: {
-    opacity: 0.75,
-    backgroundColor: 'purple',
+  overviewCardContainer: {
     backdropFilter: 'blur(10px)',
-    borderRadius: 15,
+    WebkitBackdropFilter: 'blur(10px)',
+  },
+  button: {
+    borderRadius: 25,
   },
 };
 

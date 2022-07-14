@@ -21,12 +21,15 @@ const HomePage = () => {
       <Row>
         <Col>
           <OverviewCard
-            title={'Participating Clubs'}
+            title={'Participating Clubs - Group Stage'}
             content={<ClubsOverview />}
           />
         </Col>
         <Col>
-          <OverviewCard title={'Simulation'} content={<SimulationOverview />} />
+          <OverviewCard
+            title={'Draw Simulation'}
+            content={<SimulationOverview />}
+          />
         </Col>
       </Row>
     </div>

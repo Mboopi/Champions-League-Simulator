@@ -1,19 +1,7 @@
 import { Col, Row } from 'react-bootstrap';
-// import ReactCountryFlag from 'react-country-flag';
 import Flag from 'react-world-flags';
 import data_2022 from '../data/data-2022.json';
-
-const lookup = require('country-code-lookup');
-
-const getCountryCode = (country: string) => {
-  if (country === 'England') {
-    return 'GB-ENG';
-  }
-  if (country === 'Scotland') {
-    return 'GB-SCT';
-  }
-  return lookup.byCountry(country).iso2;
-};
+import getCountryCode from '../helper-functions/helper-functions';
 
 const renderClubInfo = (data: Array<object>, potNumber: number) => {
   return data.map((entry: any, i: number) => {
@@ -21,7 +9,6 @@ const renderClubInfo = (data: Array<object>, potNumber: number) => {
       return (
         <Row key={i}>
           <p style={{ fontSize: 12 }}>
-            {/* <ReactCountryFlag countryCode={getCountryCode(entry.country)} />{' '} */}
             <Flag width={14} code={getCountryCode(entry.country)} />{' '}
             {entry.club_name}
           </p>

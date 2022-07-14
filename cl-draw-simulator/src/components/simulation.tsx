@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { Button, Col, Row } from 'react-bootstrap';
+import Flag from 'react-world-flags';
 import data_2022 from '../data/data-2022.json';
+import getCountryCode from '../helper-functions/helper-functions';
 import Simulation from '../simulation/main-simulation';
 import { ClubType, GroupType } from '../simulation/types/interfaces';
+import GlobalStyle from '../styling/global-style';
 
 const simulation = new Simulation(data_2022.group_stage);
 
@@ -10,7 +13,9 @@ const renderGroup = (group: GroupType) => {
   return group.getClubs().map((club: ClubType, i: number) => {
     return (
       <Row key={i}>
-        <p style={{ fontSize: 12 }}>{club.getName()}</p>
+        <p style={{ fontSize: 12 }}>
+          <Flag width={14} code={getCountryCode(club.getCountry())} />{' '}
+          {club.getName()}</p>
       </Row>
     )
   })
@@ -72,8 +77,7 @@ const SimulationOverview = () => {
 
   return (
     <>
-      {groupOverview.length > 0 && renderAllGroups(groupOverview)}
-      <Button onClick={() => drawClub()} variant='light' style={{ marginRight: 10 }} disabled={simulation.isDone}>
+      <Button onClick={() => drawClub()} variant='light' style={{ marginRight: 10, borderRadius: 25 }} disabled={simulation.isDone}>
         Draw a club
       </Button>
       <Button
@@ -82,9 +86,13 @@ const SimulationOverview = () => {
           setGroupOverview([])
         }}
         variant="danger"
+        style={GlobalStyle.button}
       >
         Restart
       </Button>
+      <div style={{ marginTop: 10 }} >
+        {groupOverview.length > 0 && renderAllGroups(groupOverview)}
+      </div>
     </>
   );
 };

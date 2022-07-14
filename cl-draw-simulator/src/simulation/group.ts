@@ -54,7 +54,7 @@ class Group {
     }
 
     for (let i = 0; i < this.clubs.length; i++) {
-      if (this.clubs[i].getPot() == club.getPot()) {
+      if (this.clubs[i].getPot() === club.getPot()) {
         return true;
       }
     }
