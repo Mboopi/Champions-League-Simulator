@@ -77,7 +77,7 @@ const SimulationOverview = () => {
 
   return (
     <>
-      <Button onClick={() => drawClub()} variant='light' style={{ marginRight: 10, borderRadius: 25 }} disabled={simulation.isDone}>
+      <Button onClick={() => drawClub()} variant='outline-light' style={{ marginRight: 10, borderRadius: 25 }} disabled={simulation.isDone}>
         Draw a club
       </Button>
       <Button
@@ -85,7 +85,7 @@ const SimulationOverview = () => {
           simulation.resetSimulation();
           setGroupOverview([])
         }}
-        variant="danger"
+        variant="outline-danger"
         style={GlobalStyle.button}
       >
         Restart

@@ -32,6 +32,7 @@ const GlobalStyle = {
     borderRadius: 15,
   },
   overviewCardContainer: {
+    borderRadius: 15,
     backdropFilter: 'blur(10px)',
     WebkitBackdropFilter: 'blur(10px)',
   },
