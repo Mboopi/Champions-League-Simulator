@@ -39,6 +39,10 @@ const GlobalStyle = {
   button: {
     borderRadius: 15,
   },
+  CONSTANTS: {
+    clubFlagWidth: 14,
+    clubFontSize: 12,
+  },
 };
 
 export default GlobalStyle;

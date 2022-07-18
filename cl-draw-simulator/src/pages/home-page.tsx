@@ -2,7 +2,7 @@ import { useState } from 'react';
 import data_2022 from '../data/data-2022.json';
 import GlobalStyle from '../styling/global-style';
 import OverviewCard from '../components/overview-card';
-import { Col, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import SimulationOverview from '../components/simulation';
 import ClubsOverview from '../components/clubs';
 
@@ -18,8 +18,9 @@ const HomePage = () => {
         UEFA Champions League Draw Simulator
       </p>
 
+      {/* <Container fluid> */}
       <Row>
-        <Col>
+        <Col xs={12} sm={12} md={6} lg={6}>
           <OverviewCard
             title={'Participating Clubs - Group Stage'}
             content={<ClubsOverview />}
@@ -32,6 +33,7 @@ const HomePage = () => {
           />
         </Col>
       </Row>
+      {/* </Container> */}
     </div>
   );
 };
