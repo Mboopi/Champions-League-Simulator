@@ -19,10 +19,10 @@ const HomePage = () => {
       </p>
 
       {/* <Container fluid> */}
-      <Row>
-        <Col xs={12} sm={12} md={6} lg={6}>
+      <Row style={{ paddingBottom: 20 }}>
+        <Col xs={12} sm={12} md={6} lg={6} style={{ marginBottom: 20 }}>
           <OverviewCard
-            title={'Participating Clubs - Group Stage'}
+            title={'Clubs (Group Stage)'}
             content={<ClubsOverview />}
           />
         </Col>

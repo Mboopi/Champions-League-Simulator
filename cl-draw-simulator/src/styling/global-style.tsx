@@ -9,7 +9,8 @@ const GlobalStyle = {
     backgroundSize: 'cover',
     backgroundAttachment: 'fixed',
     backgroundPosition: 'center',
-    height: '100vh',
+    // height: '100%',
+    minHeight: '100vh',
     // fontSize: 20,
   },
   pageTitle: {
