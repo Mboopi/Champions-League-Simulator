@@ -37,7 +37,7 @@ const GlobalStyle = {
     WebkitBackdropFilter: 'blur(10px)',
   },
   button: {
-    borderRadius: 25,
+    borderRadius: 15,
   },
 };
 

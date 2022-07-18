@@ -77,7 +77,7 @@ const SimulationOverview = () => {
 
   return (
     <>
-      <Button onClick={() => drawClub()} variant='outline-light' style={{ marginRight: 10, borderRadius: 25 }} disabled={simulation.isDone}>
+      <Button onClick={() => drawClub()} variant='outline-light' style={{ marginRight: 10, borderRadius: 15 }} disabled={simulation.isDone}>
         Draw a club
       </Button>
       <Button
