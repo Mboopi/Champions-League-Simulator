@@ -18,7 +18,6 @@ const HomePage = () => {
         UEFA Champions League Draw Simulator
       </p>
 
-      {/* <Container fluid> */}
       <Row style={{ paddingBottom: 20 }}>
         <Col xs={12} sm={12} md={6} lg={6} style={{ marginBottom: 20 }}>
           <OverviewCard
@@ -33,7 +32,6 @@ const HomePage = () => {
           />
         </Col>
       </Row>
-      {/* </Container> */}
     </div>
   );
 };

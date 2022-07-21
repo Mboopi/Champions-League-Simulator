@@ -90,8 +90,9 @@ const SimulationOverview = () => {
       >
         Restart
       </Button>
-      <hr style={{height: 2}}/>
+     
       <div style={{ marginTop: 10 }} >
+        {groupOverview.length > 0 && <hr style={{height: 2}}/>}
         {groupOverview.length > 0 && renderAllGroups(groupOverview)}
       </div>
     </>
