@@ -6,9 +6,9 @@ import { getCountryCode } from '../helper-functions/helper-functions';
 import Simulation from '../simulation/main-simulation';
 import { ClubType, GroupType } from '../simulation/types/interfaces';
 import GlobalStyle from '../styling/global-style';
-import ToastMessage from './toast-message';
 
 const simulation = new Simulation(data_2022.group_stage);
+
 
 const renderGroup = (group: GroupType) => {
   return group.getClubs().map((club: ClubType, i: number) => {
@@ -23,44 +23,33 @@ const renderGroup = (group: GroupType) => {
 }
 
 const renderAllGroups = (groups: Array<GroupType>) => {
+  const groupsFirst = ['A', 'B', 'C', 'D']  // Groups before the divider.
+  const groupsSecond = ['E', 'F', 'G', 'H']  // Groups after the divider.
+
   return (
     <>
       <Row>
-        <Col xs={6} sm={6} md={6} lg={3}>
-          <b>Group A</b>
-          {renderGroup(groups[0])}
-        </Col>
-        <Col xs={6} sm={6} md={6} lg={3}>
-          <b>Group B</b>
-          {renderGroup(groups[1])}
-        </Col>
-        <Col xs={6} sm={6} md={6} lg={3}>
-          <b>Group C</b>
-          {renderGroup(groups[2])}
-        </Col>
-        <Col xs={6} sm={6} md={6} lg={3}>
-          <b>Group D</b>
-          {renderGroup(groups[3])}
-        </Col>
+        {groupsFirst.map((name: string, index: number) => {
+          return (
+            <Col xs={6} sm={6} md={6} lg={3} key={name}>
+              <b>Group {name}</b>
+              {renderGroup(groups[index])}
+            </Col>
+          )
+        })
+        }
       </Row>
       <hr />
       <Row>
-        <Col xs={6} sm={6} md={6} lg={3}>
-          <b>Group E</b>
-          {renderGroup(groups[4])}
-        </Col>
-        <Col xs={6} sm={6} md={6} lg={3}>
-          <b>Group F</b>
-          {renderGroup(groups[5])}
-        </Col>
-        <Col xs={6} sm={6} md={6} lg={3}>
-          <b>Group G</b>
-          {renderGroup(groups[6])}
-        </Col>
-        <Col xs={6} sm={6} md={6} lg={3}>
-          <b>Group H</b>
-          {renderGroup(groups[7])}
-        </Col>
+        {groupsSecond.map((name: string, index: number) => {
+          return (
+            <Col xs={6} sm={6} md={6} lg={3} key={name}>
+              <b>Group {name}</b>
+              {renderGroup(groups[index + groupsFirst.length])}
+            </Col>
+          )
+        })
+        }
       </Row>
     </>
   )
@@ -71,7 +60,7 @@ const SimulationOverview = () => {
   const [groupOverview, setGroupOverview] = useState(Array<GroupType>)
 
   const drawClub = (quick: boolean) => {
-  
+
     if (quick) {
       setGroupOverview([...simulation.quickSimulation()]) // Otherwise React doesn't see the state as updated as arrays are checked by reference.
     } else {
@@ -82,10 +71,10 @@ const SimulationOverview = () => {
   return (
     <>
       <Button onClick={() => drawClub(false)} variant='outline-light' style={{ marginRight: 10, borderRadius: 15 }} disabled={simulation.isDone}>
-        Draw a club
+        Draw club
       </Button>
       <Button onClick={() => drawClub(true)} variant='outline-light' style={{ marginRight: 10, borderRadius: 15 }} disabled={simulation.isDone}>
-        Quick draw
+        Full draw
       </Button>
       <Button
         onClick={() => {
@@ -95,7 +84,7 @@ const SimulationOverview = () => {
         variant="outline-danger"
         style={GlobalStyle.button}
       >
-        Restart
+        Reset
       </Button>
 
       <div style={{ marginTop: 10 }} >
