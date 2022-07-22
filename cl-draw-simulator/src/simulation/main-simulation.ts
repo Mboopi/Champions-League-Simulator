@@ -117,7 +117,7 @@ class Simulation {
 
     // Draw a random valid group.
     const validGroupsRemaining = getValidGroups(drawnClub, this.groups);
-    console.log(validGroupsRemaining);
+
     if (validGroupsRemaining.length > 0) {
       randomGroupIndex = getRandomInt(0, validGroupsRemaining.length);
       drawnGroup = validGroupsRemaining[randomGroupIndex];
@@ -127,7 +127,6 @@ class Simulation {
 
       // Add the club to the group.
       drawnGroup.addClub(drawnClub);
-      console.log('Added', drawnClub.getName(), 'to', drawnGroup.getName());
 
       // Remove the club from the list of available clubs.
       this.clubsRemaining.splice(randomClubIndex, 1);
