@@ -1,7 +1,7 @@
 import { Col, Row } from 'react-bootstrap';
 import Flag from 'react-world-flags';
 import data_2022 from '../data/data-2022.json';
-import getCountryCode from '../helper-functions/helper-functions';
+import { getCountryCode } from '../helper-functions/helper-functions';
 import GlobalStyle from '../styling/global-style';
 
 const renderClubInfo = (data: Array<object>, potNumber: number) => {

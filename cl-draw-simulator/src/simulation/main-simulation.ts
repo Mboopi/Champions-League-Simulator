@@ -1,14 +1,25 @@
 import Club from './club';
 import Group from './group';
 import { ClubType, DataType, GroupType } from './types/interfaces';
+import { getRandomInt } from './../helper-functions/helper-functions';
 
 /**
- * Function that returns a random integer between min and max.
+ * Method that returns true if a given club may be assigned to a given group, according to the drawing rules
+ * and false otherwise.
  */
-function getRandomInt(min: number, max: number) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is. inclusive
+function isValidDraw(club: ClubType, group: GroupType): boolean {
+  let isValid = true;
+  // Clubs may not be from the same countries and pot.
+  if (group.checkCommonCountries(club) || group.checkCommonPots(club)) {
+    isValid = false;
+  }
+
+  // Group should availability status should be true.
+  if (group.getAvailability() === false) {
+    isValid = false;
+  }
+
+  return isValid;
 }
 
 /**
@@ -71,25 +82,6 @@ class Simulation {
   }
 
   /**
-   * Method that returns true if a given club may be assigned to a given group, according to the drawing rules
-   * and false otherwise.
-   */
-  public isValidDraw(club: ClubType, group: GroupType): boolean {
-    let isValid = true;
-    // Clubs may not be from the same countries and pot.
-    if (group.checkCommonCountries(club) || group.checkCommonPots(club)) {
-      isValid = false;
-    }
-
-    // Group should availability status should be true.
-    if (group.getAvailability() === false) {
-      isValid = false;
-    }
-
-    return isValid;
-  }
-
-  /**
    * Method that runs 1 step of the simulation, that is, draws 1 club and assigns it to a group.
    * It then returns the group to which the club has been assigned.
    */
@@ -107,7 +99,7 @@ class Simulation {
     }
 
     // Keep redrawing while the drawn group is not valid.
-    while (this.isValidDraw(drawnClub, drawnGroup) === false) {
+    while (isValidDraw(drawnClub, drawnGroup) === false) {
       randomGroupIndex = getRandomInt(0, this.groups.length);
       drawnGroup = this.groups[randomGroupIndex];
 

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Button, Col, Row } from 'react-bootstrap';
 import Flag from 'react-world-flags';
 import data_2022 from '../data/data-2022.json';
-import getCountryCode from '../helper-functions/helper-functions';
+import { getCountryCode } from '../helper-functions/helper-functions';
 import Simulation from '../simulation/main-simulation';
 import { ClubType, GroupType } from '../simulation/types/interfaces';
 import GlobalStyle from '../styling/global-style';
