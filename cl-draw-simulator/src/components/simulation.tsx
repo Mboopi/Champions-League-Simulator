@@ -70,16 +70,22 @@ const renderAllGroups = (groups: Array<GroupType>) => {
 const SimulationOverview = () => {
   const [groupOverview, setGroupOverview] = useState(Array<GroupType>)
 
-  const drawClub = () => {
-    const groups = simulation.runSimulationStep();
-
-    setGroupOverview([...groups]) // Otherwise React doesn't see the state as updated as arrays are checked by reference.
+  const drawClub = (quick: boolean) => {
+  
+    if (quick) {
+      setGroupOverview([...simulation.quickSimulation()]) // Otherwise React doesn't see the state as updated as arrays are checked by reference.
+    } else {
+      setGroupOverview([...simulation.runSimulationStep()]) // Otherwise React doesn't see the state as updated as arrays are checked by reference.
+    }
   };
 
   return (
     <>
-      <Button onClick={() => drawClub()} variant='outline-light' style={{ marginRight: 10, borderRadius: 15 }} disabled={simulation.isDone}>
+      <Button onClick={() => drawClub(false)} variant='outline-light' style={{ marginRight: 10, borderRadius: 15 }} disabled={simulation.isDone}>
         Draw a club
+      </Button>
+      <Button onClick={() => drawClub(true)} variant='outline-light' style={{ marginRight: 10, borderRadius: 15 }} disabled={simulation.isDone}>
+        Quick draw
       </Button>
       <Button
         onClick={() => {

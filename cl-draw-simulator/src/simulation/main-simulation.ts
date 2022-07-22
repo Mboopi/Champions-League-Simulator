@@ -159,6 +159,17 @@ class Simulation {
     // Return the group array of Group objects.
     return this.groups;
   }
+
+  /**
+   * Function that immediately performs the whole draw procedure and returns the results.
+   */
+  public quickSimulation() {
+    while (this.clubsRemaining.length > 0) {
+      this.runSimulationStep();
+    }
+
+    return this.groups;
+  }
 }
 
 export default Simulation;
