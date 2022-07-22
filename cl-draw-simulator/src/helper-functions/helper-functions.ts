@@ -1,5 +1,9 @@
 const lookup = require('country-code-lookup');
 
+/**
+ * Function that returns the ISO-2 country code of a country, given the name.
+ * Exceptions are England and Scotland who don't have such codes (UK).
+ */
 export function getCountryCode(country: string) {
   if (country === 'England') {
     return 'GB-ENG';

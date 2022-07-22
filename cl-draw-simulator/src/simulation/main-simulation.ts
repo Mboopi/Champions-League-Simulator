@@ -6,6 +6,11 @@ import { getRandomInt } from './../helper-functions/helper-functions';
 /**
  * Method that returns true if a given club may be assigned to a given group, according to the drawing rules
  * and false otherwise.
+ * Rules:
+ *  -> Clubs from the same group and/or pot may not be drawn into the same group.
+ *  -> Clubs from Ukraine and Russa may not be drawn into the same group.
+ *  -> For clubs of the same association, pairings are made such that the clubs from said pairings will play on different days.
+ *     As these pairing are not yet known, the simulator does not take these pairings into account.
  */
 function isValidDraw(club: ClubType, group: GroupType): boolean {
   let isValid = true;
@@ -14,7 +19,7 @@ function isValidDraw(club: ClubType, group: GroupType): boolean {
     isValid = false;
   }
 
-  // Group should availability status should be true.
+  // Group availability status should be true.
   if (group.getAvailability() === false) {
     isValid = false;
   }
@@ -23,7 +28,7 @@ function isValidDraw(club: ClubType, group: GroupType): boolean {
 }
 
 /**
- * Function to check how many groups are currently available.
+ * Function to check how many groups are currently available (i.e. still open, but not necessarily valid).
  */
 function countAvailableGroups(groups: Array<GroupType>) {
   let count = 0;
@@ -36,6 +41,20 @@ function countAvailableGroups(groups: Array<GroupType>) {
   return count;
 }
 
+/**
+ * Function that returns the groups that the given club may still be assigned to according to the rules.
+ */
+function getValidGroups(club: ClubType, groups: Array<GroupType>) {
+  let validGroups = [];
+  for (let i = 0; i < groups.length; i++) {
+    if (groups[i].getAvailability() && isValidDraw(club, groups[i])) {
+      validGroups.push(groups[i]);
+    }
+  }
+
+  return validGroups;
+}
+
 class Simulation {
   data: DataType[] = []; // Array of dataType objects, which is basically just the objects in the data array.
   groupNames = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
@@ -44,7 +63,6 @@ class Simulation {
 
   clubsRemaining: ClubType[] = []; // Array of Club objects, that still have to be drawn.
   groups: GroupType[] = []; // Array of Group objects.
-  // availableGroups: GroupType[] = []; // Array of available groups, which will reset every time 8 clubs have been drawn.
 
   constructor(data: Array<DataType>) {
     this.data = data;
@@ -89,8 +107,7 @@ class Simulation {
     let randomClubIndex = getRandomInt(0, this.clubsRemaining.length); // Draw a random club.
     let drawnClub = this.clubsRemaining[randomClubIndex];
 
-    let randomGroupIndex = getRandomInt(0, this.groups.length); // Draw a random group.
-    let drawnGroup = this.groups[randomGroupIndex];
+    let randomGroupIndex, drawnGroup;
 
     // Keep redrawing while the drawn club is not from the required pot.
     while (drawnClub.getPot() !== this.currentPot) {
@@ -98,24 +115,25 @@ class Simulation {
       drawnClub = this.clubsRemaining[randomClubIndex];
     }
 
-    // Keep redrawing while the drawn group is not valid.
-    while (isValidDraw(drawnClub, drawnGroup) === false) {
-      randomGroupIndex = getRandomInt(0, this.groups.length);
-      drawnGroup = this.groups[randomGroupIndex];
+    // Draw a random valid group.
+    const validGroupsRemaining = getValidGroups(drawnClub, this.groups);
+    console.log(validGroupsRemaining);
+    if (validGroupsRemaining.length > 0) {
+      randomGroupIndex = getRandomInt(0, validGroupsRemaining.length);
+      drawnGroup = validGroupsRemaining[randomGroupIndex];
 
-      // Need to add check in case it's impossible to place the club in an available group,
-      // then should return something ...
+      // Set the availability status of the group to false.
+      drawnGroup.setAvailability(false);
+
+      // Add the club to the group.
+      drawnGroup.addClub(drawnClub);
+      console.log('Added', drawnClub.getName(), 'to', drawnGroup.getName());
+
+      // Remove the club from the list of available clubs.
+      this.clubsRemaining.splice(randomClubIndex, 1);
+    } else {
+      console.log('No valid groups left!');
     }
-
-    // Add the club to the group.
-    drawnGroup.addClub(drawnClub);
-    console.log('Added', drawnClub.getName(), 'to', drawnGroup.getName());
-
-    // Remove the club from the list of available clubs.
-    this.clubsRemaining.splice(randomClubIndex, 1);
-
-    // Set the availability status of the group to false.
-    this.groups[randomGroupIndex].setAvailability(false);
 
     /**
      * After every 8 clubs have been assigned to the groups, all groups are unavailable.
@@ -141,9 +159,5 @@ class Simulation {
     return this.groups;
   }
 }
-
-// Remove...
-// const test = new Simulation(data_2022.group_stage);
-// test.initializeSimulation();
 
 export default Simulation;
