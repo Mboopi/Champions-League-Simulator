@@ -1,6 +1,7 @@
 import background from './../assets/background2_upscaled.jpg';
-const PrimaryColor = '';
+
 const TextCol = '#FFFFFF';
+const defaultRadius = 15;
 
 const GlobalStyle = {
   defaultLayout: {
@@ -9,9 +10,7 @@ const GlobalStyle = {
     backgroundSize: 'cover',
     backgroundAttachment: 'fixed',
     backgroundPosition: 'center',
-    // height: '100%',
     minHeight: '100vh',
-    // fontSize: 20,
   },
   pageTitle: {
     fontWeight: 'bold' as 'bold',
@@ -30,15 +29,25 @@ const GlobalStyle = {
   },
   overviewCard: {
     backgroundColor: 'rgba(0, 0, 0, 0.33)',
-    borderRadius: 15,
+    borderRadius: defaultRadius,
   },
   overviewCardContainer: {
-    borderRadius: 15,
+    borderRadius: defaultRadius,
     backdropFilter: 'blur(10px)',
     WebkitBackdropFilter: 'blur(10px)',
   },
   button: {
-    borderRadius: 15,
+    borderRadius: defaultRadius,
+  },
+  toast: {
+    header: {
+      borderTopLeftRadius: defaultRadius,
+      borderTopRightRadius: defaultRadius,
+    },
+    body: {
+      borderRadius: defaultRadius,
+      color: 'black',
+    },
   },
   CONSTANTS: {
     clubFlagWidth: 14,

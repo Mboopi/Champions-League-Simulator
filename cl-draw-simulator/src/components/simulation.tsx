@@ -6,6 +6,7 @@ import { getCountryCode } from '../helper-functions/helper-functions';
 import Simulation from '../simulation/main-simulation';
 import { ClubType, GroupType } from '../simulation/types/interfaces';
 import GlobalStyle from '../styling/global-style';
+import ToastMessage from './toast-message';
 
 const simulation = new Simulation(data_2022.group_stage);
 
@@ -42,7 +43,7 @@ const renderAllGroups = (groups: Array<GroupType>) => {
           {renderGroup(groups[3])}
         </Col>
       </Row>
-      <hr/>
+      <hr />
       <Row>
         <Col xs={6} sm={6} md={6} lg={3}>
           <b>Group E</b>
@@ -90,9 +91,9 @@ const SimulationOverview = () => {
       >
         Restart
       </Button>
-     
+
       <div style={{ marginTop: 10 }} >
-        {groupOverview.length > 0 && <hr style={{height: 2}}/>}
+        {groupOverview.length > 0 && <hr style={{ height: 2 }} />}
         {groupOverview.length > 0 && renderAllGroups(groupOverview)}
       </div>
     </>
