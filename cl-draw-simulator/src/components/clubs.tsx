@@ -24,26 +24,19 @@ const renderClubInfo = (data: Array<object>, potNumber: number) => {
 
 const ClubsOverview = () => {
   const drawMode = 'group_stage';
+  const pots = [1, 2, 3, 4];
 
   return (
     <>
       <Row>
-        <Col xs={6} sm={6} md={6} lg={3}>
-          <b>Pot 1</b>
-          {renderClubInfo(data_2022[`${drawMode}`], 1)}
-        </Col>
-        <Col>
-          <b>Pot 2</b>
-          {renderClubInfo(data_2022[`${drawMode}`], 2)}
-        </Col>
-        <Col>
-          <b>Pot 3</b>
-          {renderClubInfo(data_2022[`${drawMode}`], 3)}
-        </Col>
-        <Col>
-          <b>Pot 4</b>
-          {renderClubInfo(data_2022[`${drawMode}`], 4)}
-        </Col>
+        {pots.map((pot: number) => {
+          return (
+            <Col xs={6} sm={6} md={6} lg={3} key={pot}>
+              <b>Pot {pot}</b>
+              {renderClubInfo(data_2022[`${drawMode}`], pot)}
+            </Col>
+          );
+        })}
       </Row>
     </>
   );
