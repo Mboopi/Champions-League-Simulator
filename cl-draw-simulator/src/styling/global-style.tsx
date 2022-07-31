@@ -18,12 +18,14 @@ const GlobalStyle = {
     fontSize: 45,
     textAlign: 'center' as 'center',
     marginBottom: 5,
+    textShadow: '0px 0px 10px blue',
   },
   pageSubTitle: {
     fontWeight: 'bold' as 'bold',
     fontSize: 25,
     textAlign: 'center' as 'center',
     marginBottom: 40,
+    textShadow: '0px 0px 10px blue',
   },
   homePage: {
     paddingTop: 30,
