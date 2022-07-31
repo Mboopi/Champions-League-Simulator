@@ -11,6 +11,7 @@ const GlobalStyle = {
     backgroundAttachment: 'fixed',
     backgroundPosition: 'center',
     minHeight: '100vh',
+    fontFamily: 'Product Sans',
   },
   pageTitle: {
     fontWeight: 'bold' as 'bold',
