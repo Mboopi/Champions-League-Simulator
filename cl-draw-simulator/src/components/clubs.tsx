@@ -13,7 +13,8 @@ const renderClubInfo = (data: Array<object>, potNumber: number) => {
             <Flag
               width={GlobalStyle.CONSTANTS.clubFlagWidth}
               code={getCountryCode(entry.country)}
-            />{' '}
+              style={GlobalStyle.flag}
+            />
             {entry.club_name}
           </p>
         </Row>

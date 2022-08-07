@@ -9,13 +9,19 @@ import GlobalStyle from '../styling/global-style';
 
 const simulation = new Simulation(data_2022.group_stage);
 
+const style = {
+  button: {
+    marginRight: 10, borderRadius: 15
+  }
+}
+
 
 const renderGroup = (group: GroupType) => {
   return group.getClubs().map((club: ClubType, i: number) => {
     return (
       <Row key={i}>
         <p style={{ fontSize: GlobalStyle.CONSTANTS.clubFontSize }}>
-          <Flag width={GlobalStyle.CONSTANTS.clubFlagWidth} code={getCountryCode(club.getCountry())} />{' '}
+          <Flag width={GlobalStyle.CONSTANTS.clubFlagWidth} code={getCountryCode(club.getCountry())} style={GlobalStyle.flag} />
           {club.getName()}</p>
       </Row>
     )
@@ -70,10 +76,10 @@ const SimulationOverview = () => {
 
   return (
     <>
-      <Button onClick={() => drawClub(false)} variant='outline-light' style={{ marginRight: 10, borderRadius: 15 }} disabled={simulation.isDone}>
+      <Button onClick={() => drawClub(false)} variant='outline-light' style={style.button} disabled={simulation.isDone}>
         Draw club
       </Button>
-      <Button onClick={() => drawClub(true)} variant='outline-light' style={{ marginRight: 10, borderRadius: 15 }} disabled={simulation.isDone}>
+      <Button onClick={() => drawClub(true)} variant='outline-light' style={style.button} disabled={simulation.isDone}>
         Full draw
       </Button>
       <Button

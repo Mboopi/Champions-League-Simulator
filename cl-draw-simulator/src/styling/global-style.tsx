@@ -52,6 +52,9 @@ const GlobalStyle = {
       color: 'black',
     },
   },
+  flag: {
+    marginRight: 5,
+  },
   CONSTANTS: {
     clubFlagWidth: 14,
     clubFontSize: 12,
