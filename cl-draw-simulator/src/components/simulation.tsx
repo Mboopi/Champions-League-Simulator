@@ -3,6 +3,7 @@ import { Button, Col, Row } from 'react-bootstrap';
 import Flag from 'react-world-flags';
 import data_2022 from '../data/data-2022.json';
 import { getCountryCode } from '../helper-functions/helper-functions';
+import Club from '../simulation/club';
 import Simulation from '../simulation/main-simulation';
 import { ClubType, GroupType } from '../simulation/types/interfaces';
 import GlobalStyle from '../styling/global-style';
@@ -15,9 +16,15 @@ const style = {
   }
 }
 
-
 const renderGroup = (group: GroupType) => {
-  return group.getClubs().map((club: ClubType, i: number) => {
+  let clubs: ClubType[] = []
+  const GROUP_SIZE = 4
+
+  for (let i = 0; i < GROUP_SIZE; i++) {
+    clubs.push(group.getClubs()[i] || new Club('...', 'N/A', 0))
+  }
+
+  return clubs.map((club: ClubType, i: number) => {
     return (
       <Row key={i}>
         <p style={{ fontSize: GlobalStyle.CONSTANTS.clubFontSize }}>

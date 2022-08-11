@@ -2,6 +2,7 @@ import background from './../assets/background2_upscaled.jpg';
 
 const TextCol = '#FFFFFF';
 const defaultRadius = 15;
+const defaultShadow = '0px 0px 10px blue';
 
 const GlobalStyle = {
   defaultLayout: {
@@ -18,14 +19,14 @@ const GlobalStyle = {
     fontSize: 45,
     textAlign: 'center' as 'center',
     marginBottom: 5,
-    textShadow: '0px 0px 10px blue',
+    textShadow: defaultShadow,
   },
   pageSubTitle: {
     fontWeight: 'bold' as 'bold',
     fontSize: 25,
     textAlign: 'center' as 'center',
     marginBottom: 40,
-    textShadow: '0px 0px 10px blue',
+    textShadow: defaultShadow,
   },
   homePage: {
     paddingTop: 30,
@@ -54,6 +55,9 @@ const GlobalStyle = {
   },
   flag: {
     marginRight: 5,
+  },
+  text: {
+    textShadow: defaultShadow,
   },
   CONSTANTS: {
     clubFlagWidth: 14,

@@ -24,13 +24,13 @@ const HomePage = () => {
     if (showInfo) {
       return (
         <div style={style.infoContainer}>
-          <p>
+          <p style={GlobalStyle.text}>
             This site allows you to simulate the draw of the group stage of the
             UEFA Champions League football tournament of the season 2022/23.
             This website is not associated with UEFA in any way. It is simply a
             personal project for fun.{' '}
             <a onClick={() => setShowInfo(false)} style={{ cursor: 'pointer' }}>
-              <u>Click to minimize</u>
+              <u>Hide</u>
             </a>
           </p>
         </div>

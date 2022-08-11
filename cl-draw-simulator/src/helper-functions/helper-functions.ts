@@ -5,6 +5,9 @@ const lookup = require('country-code-lookup');
  * Exceptions are England and Scotland who don't have such codes (UK).
  */
 export function getCountryCode(country: string) {
+  if (country === 'N/A') {
+    return 'N/A';
+  }
   if (country === 'England') {
     return 'GB-ENG';
   }
