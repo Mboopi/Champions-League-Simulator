@@ -6,7 +6,7 @@ import GlobalStyle from '../styling/global-style';
 
 const renderClubInfo = (data: Array<object>, potNumber: number) => {
   return data.map((entry: any, i: number) => {
-    if (entry.pot == potNumber) {
+    if (entry.pot === potNumber) {
       return (
         <Row key={i}>
           <p style={{ fontSize: GlobalStyle.CONSTANTS.clubFontSize }}>
@@ -20,6 +20,8 @@ const renderClubInfo = (data: Array<object>, potNumber: number) => {
         </Row>
       );
     }
+
+    return null;
   });
 };
 

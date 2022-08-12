@@ -40,7 +40,7 @@ class Group {
       return false;
     }
     for (let i = 0; i < this.clubs.length; i++) {
-      if (this.clubs[i].getCountry() == club.getCountry()) {
+      if (this.clubs[i].getCountry() === club.getCountry()) {
         return true;
       }
     }

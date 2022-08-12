@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import data_2022 from '../data/data-2022.json';
+// import data_2022 from '../data/data-2022.json';
 import GlobalStyle from '../styling/global-style';
 import OverviewCard from '../components/overview-card';
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Row } from 'react-bootstrap';
 import SimulationOverview from '../components/simulation';
 import ClubsOverview from '../components/clubs';
 import Footer from '../components/footer';
@@ -17,8 +17,8 @@ const style = {
 
 const HomePage = () => {
   // const [drawMode, setDrawMode] = useState('group_stage');
-  const drawMode = 'group_stage';
-  const [clubData, setClubData] = useState(data_2022[`${drawMode}`]);
+  // const drawMode = 'group_stage';
+  // const [clubData, setClubData] = useState(data_2022[`${drawMode}`]);
   const [showInfo, setShowInfo] = useState(false);
 
   const renderInfo = () => {
@@ -28,21 +28,26 @@ const HomePage = () => {
           <p style={GlobalStyle.text}>
             This site allows you to simulate the draw of the group stage of the
             UEFA Champions League football tournament of the season 2022/23.{' '}
-            <a onClick={() => setShowInfo(false)} style={{ cursor: 'pointer' }}>
-              <u>Hide</u>
-            </a>
+            <Button
+              variant="link"
+              style={GlobalStyle.linkButton}
+              onClick={() => setShowInfo(false)}
+            >
+              Hide
+            </Button>
           </p>
         </div>
       );
     } else {
       return (
         <div style={style.infoContainer}>
-          <u
+          <Button
+            variant="link"
+            style={GlobalStyle.linkButton}
             onClick={() => setShowInfo(true)}
-            style={{ color: 'white', cursor: 'pointer' }}
           >
             More info
-          </u>
+          </Button>
         </div>
       );
     }

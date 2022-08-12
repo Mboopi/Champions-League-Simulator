@@ -73,6 +73,12 @@ const GlobalStyle = {
       marginTop: -10,
     },
   },
+  linkButton: {
+    marginTop: -3,
+    marginLeft: -7,
+    marginRight: -7,
+    color: 'white',
+  },
   CONSTANTS: {
     clubFlagWidth: 14,
     clubFontSize: 12,
