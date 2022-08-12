@@ -5,6 +5,7 @@ import OverviewCard from '../components/overview-card';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import SimulationOverview from '../components/simulation';
 import ClubsOverview from '../components/clubs';
+import Footer from '../components/footer';
 
 const style = {
   infoContainer: {
@@ -26,9 +27,7 @@ const HomePage = () => {
         <div style={style.infoContainer}>
           <p style={GlobalStyle.text}>
             This site allows you to simulate the draw of the group stage of the
-            UEFA Champions League football tournament of the season 2022/23.
-            This website is not associated with UEFA in any way. It is simply a
-            personal project for fun.{' '}
+            UEFA Champions League football tournament of the season 2022/23.{' '}
             <a onClick={() => setShowInfo(false)} style={{ cursor: 'pointer' }}>
               <u>Hide</u>
             </a>
@@ -72,6 +71,8 @@ const HomePage = () => {
           />
         </Col>
       </Row>
+
+      <Footer />
     </div>
   );
 };

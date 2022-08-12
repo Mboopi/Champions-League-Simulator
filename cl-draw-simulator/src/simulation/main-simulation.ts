@@ -131,8 +131,7 @@ class Simulation {
       // Remove the club from the list of available clubs.
       this.clubsRemaining.splice(randomClubIndex, 1);
     } else {
-      // Not sure what officiially happens in this case. For now, just restart the draw.
-      console.log('No valid groups left!');
+      // Not sure what officially happens in this case. For now, just restart the draw.
       this.resetSimulation();
     }
 

@@ -59,6 +59,20 @@ const GlobalStyle = {
   text: {
     textShadow: defaultShadow,
   },
+  footer: {
+    container: {
+      paddingBottom: 5,
+      left: 0,
+      bottom: 0,
+      right: 0,
+    },
+    text: {
+      textShadow: defaultShadow,
+      textAlign: 'center' as 'center',
+      fontSize: 9,
+      marginTop: -10,
+    },
+  },
   CONSTANTS: {
     clubFlagWidth: 14,
     clubFontSize: 12,
