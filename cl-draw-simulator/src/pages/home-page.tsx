@@ -6,6 +6,7 @@ import { Button, Col, Row } from 'react-bootstrap';
 import SimulationOverview from '../components/simulation';
 import ClubsOverview from '../components/clubs';
 import Footer from '../components/footer';
+import Header from '../components/header';
 
 const style = {
   infoContainer: {
@@ -55,10 +56,7 @@ const HomePage = () => {
 
   return (
     <div style={GlobalStyle.homePage}>
-      <p style={GlobalStyle.pageTitle}>UCL SIMULATOR 2022/23</p>
-      <p style={GlobalStyle.pageSubTitle}>
-        UEFA Champions League Draw Simulator
-      </p>
+      <Header />
 
       {renderInfo()}
 

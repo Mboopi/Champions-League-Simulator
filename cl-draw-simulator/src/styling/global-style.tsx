@@ -18,15 +18,21 @@ const GlobalStyle = {
     fontWeight: 'bold' as 'bold',
     fontSize: 45,
     textAlign: 'center' as 'center',
-    marginBottom: 5,
+    marginBottom: -5,
     textShadow: defaultShadow,
   },
   pageSubTitle: {
     fontWeight: 'bold' as 'bold',
     fontSize: 25,
     textAlign: 'center' as 'center',
-    marginBottom: 40,
+    marginBottom: 30,
     textShadow: defaultShadow,
+  },
+  headerImage: {
+    display: 'block',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginBottom: 15,
   },
   homePage: {
     paddingTop: 30,
