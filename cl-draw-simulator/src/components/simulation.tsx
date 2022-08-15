@@ -74,7 +74,10 @@ const SimulationOverview = () => {
   const [firstLoad, setFirstLoad] = useState(true);  // Initially, the groupOverview state should be set to empty groups 
   // s.t. placeholders can be shown.
   const [firstClick, setFirstClick] = useState(true);  // The draw button should only scroll on the first drawn club.
-  const [resultsOpacity, setResultsOpacity] = useState(1);
+  const [fullDrawn, setFullDrawn] = useState(false);  // Variable for determining when to run to fading animation.
+  const [resultsOpacity, setResultsOpacity] = useState(1);  // Current opacity.
+
+  const time = 250;  // Timer in ms.
 
   const resultsRef = useRef<HTMLDivElement>(null);
 
@@ -87,17 +90,24 @@ const SimulationOverview = () => {
     }
   }, [firstLoad])
 
+  // Depending on the states, adjust the opacity for the fading animation of the results.
   useEffect(() => {
-    if (firstLoad && firstClick) {
-      setResultsOpacity(0)
-
+    if ((firstLoad && firstClick) || fullDrawn) {
+      setResultsOpacity(0);
     } else {
       const timer = setTimeout(() => {
         clearTimeout(timer);
-        setResultsOpacity(1)
-      }, 250)
+        setResultsOpacity(1);
+      }, time)
     }
-  })
+  }, [firstLoad, firstClick, fullDrawn])
+
+  // Idem
+  useEffect(() => {
+    if (fullDrawn) {
+      setFullDrawn(false);
+    }
+  }, [fullDrawn])
 
   const scrollToResults = () => {
     resultsRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -105,11 +115,18 @@ const SimulationOverview = () => {
 
   const drawClub = (quick: boolean) => {
     if (quick) {
-      setGroupOverview([...simulation.quickSimulation()]) // Otherwise React doesn't see the state as updated as arrays are checked by reference.
-      scrollToResults()
+      setFullDrawn(true);
+
+      const timer = setTimeout(() => {
+        clearTimeout(timer);
+        setGroupOverview([...simulation.quickSimulation()]);  // Otherwise React doesn't see the state as updated as arrays are checked by reference.
+
+      }, time)
+
+      scrollToResults();
 
     } else {
-      setGroupOverview([...simulation.runSimulationStep()]) // Otherwise React doesn't see the state as updated as arrays are checked by reference.
+      setGroupOverview([...simulation.runSimulationStep()]); // Otherwise React doesn't see the state as updated as arrays are checked by reference.
 
       if (firstClick) {
         scrollToResults();
@@ -131,7 +148,8 @@ const SimulationOverview = () => {
           simulation.resetSimulation();
           //setGroupOverview([]);
           setFirstClick(true);
-          setFirstLoad(true)
+          setFirstLoad(true);
+          setFullDrawn(false);
         }}
         variant="outline-danger"
         style={GlobalStyle.button}
@@ -140,7 +158,7 @@ const SimulationOverview = () => {
       </Button>
       {groupOverview.length > 0 && <hr style={{ height: 2 }} />}
 
-      <div style={{ marginTop: 10, opacity: resultsOpacity, transition: 'opacity 0.1s' }} >
+      <div style={{ marginTop: 10, opacity: resultsOpacity, transition: 'opacity ease-out 0.15s' }} >
         {groupOverview.length > 0 && renderAllGroups(groupOverview)}
       </div>
     </div>
