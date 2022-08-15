@@ -7,7 +7,7 @@ const OverviewCard = ({ title, content }: any) => {
       <Card style={GlobalStyle.overviewCard}>
         <Card.Body>
           <Card.Title>
-            <b style={GlobalStyle.pageSubTitle}>{title}</b>
+            <b style={GlobalStyle.cardTitle}>{title}</b>
           </Card.Title>
           {content}
         </Card.Body>
