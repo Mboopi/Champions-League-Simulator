@@ -31,6 +31,7 @@ const ClubsOverview = () => {
 
   return (
     <>
+      <hr style={{ height: 2 }} />
       <Row>
         {pots.map((pot: number) => {
           return (

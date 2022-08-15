@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Button, Col, Row } from 'react-bootstrap';
 import Flag from 'react-world-flags';
 import data_2022 from '../data/data-2022.json';
@@ -70,19 +70,44 @@ const renderAllGroups = (groups: Array<GroupType>) => {
 
 
 const SimulationOverview = () => {
-  const [groupOverview, setGroupOverview] = useState(Array<GroupType>)
+  const [groupOverview, setGroupOverview] = useState(Array<GroupType>)  // Track the state of the groups.
+
+  const [firstLoad, setFirstLoad] = useState(true)  // Initially, the groupOverview state should be set to empty groups 
+  // s.t. placeholders can be shown.
+  const [firstClick, setFirstClick] = useState(true);  // The draw button should only scroll on the first drawn club.
+
+  const resultsRef = useRef<HTMLDivElement>(null);
+
+  // Set the groupOverview to empty array so that the placeholders are displayed.
+  // Otherwise, only the title and buttons are displayed when no clubs have been drawn yet.
+  useEffect(() => {
+    if (firstLoad) {
+      setGroupOverview([...simulation.groups]);
+      setFirstLoad(false);
+    }
+  }, [firstLoad])
+
+  const scrollToResults = () => {
+    resultsRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }
 
   const drawClub = (quick: boolean) => {
-
     if (quick) {
+      scrollToResults()
       setGroupOverview([...simulation.quickSimulation()]) // Otherwise React doesn't see the state as updated as arrays are checked by reference.
+    
     } else {
       setGroupOverview([...simulation.runSimulationStep()]) // Otherwise React doesn't see the state as updated as arrays are checked by reference.
+
+      if (firstClick) {
+        scrollToResults();
+        setFirstClick(false);
+      }
     }
   };
 
   return (
-    <>
+    <div ref={resultsRef}>
       <Button onClick={() => drawClub(false)} variant='outline-light' style={style.button} disabled={simulation.isDone}>
         Draw club
       </Button>
@@ -92,7 +117,9 @@ const SimulationOverview = () => {
       <Button
         onClick={() => {
           simulation.resetSimulation();
-          setGroupOverview([])
+          //setGroupOverview([]);
+          setFirstClick(true);
+          setFirstLoad(true)
         }}
         variant="outline-danger"
         style={GlobalStyle.button}
@@ -104,7 +131,7 @@ const SimulationOverview = () => {
         {groupOverview.length > 0 && <hr style={{ height: 2 }} />}
         {groupOverview.length > 0 && renderAllGroups(groupOverview)}
       </div>
-    </>
+    </div>
   );
 };
 

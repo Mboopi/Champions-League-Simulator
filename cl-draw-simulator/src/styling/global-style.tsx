@@ -28,6 +28,12 @@ const GlobalStyle = {
     marginBottom: 30,
     textShadow: defaultShadow,
   },
+  cardTitle: {
+    fontWeight: 'bold' as 'bold',
+    fontSize: 25,
+    textAlign: 'center' as 'center',
+    marginBottom: 30,
+  },
   headerImage: {
     display: 'block',
     marginLeft: 'auto',

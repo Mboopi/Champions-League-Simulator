@@ -1,4 +1,4 @@
-import { Col, Row, Image } from 'react-bootstrap';
+import { Image } from 'react-bootstrap';
 import GlobalStyle from '../styling/global-style';
 
 import Logo from '../assets/header.png';
