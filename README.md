@@ -4,6 +4,8 @@
 
 This site allows you to simulate the UEFA Champions League draw for the season 2022/23.
 
+Check it out: https://ucl-simulator.netlify.app
+
 On the left side, it shows the participating clubs from each pot.
 On the right side, you can simulate the draw. You can either draw clubs one by one or perform a full draw.
 
