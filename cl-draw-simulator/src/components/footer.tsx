@@ -9,7 +9,7 @@ const Footer = () => {
         UEFA. This website was only made for fun to simulate a Champions League
         draw.
       </p>
-      <p style={GlobalStyle.footer.text}>Version: 1.0 - Made by Mboopi</p>
+      <p style={GlobalStyle.footer.text}>Version: 1.1 - Made by Mboopi</p>
     </div>
   );
 };

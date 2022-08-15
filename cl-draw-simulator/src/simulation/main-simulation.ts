@@ -151,7 +151,6 @@ class Simulation {
 
     // If all clubs have been drawn, then running the next step should just reset everything.
     if (this.clubsRemaining.length < 1) {
-      //this.resetSimulation();
       this.isDone = true;
     }
 

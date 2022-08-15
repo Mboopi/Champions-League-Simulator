@@ -70,9 +70,9 @@ const renderAllGroups = (groups: Array<GroupType>) => {
 
 
 const SimulationOverview = () => {
-  const [groupOverview, setGroupOverview] = useState(Array<GroupType>)  // Track the state of the groups.
+  const [groupOverview, setGroupOverview] = useState(Array<GroupType>);  // Track the state of the groups.
 
-  const [firstLoad, setFirstLoad] = useState(true)  // Initially, the groupOverview state should be set to empty groups 
+  const [firstLoad, setFirstLoad] = useState(true);  // Initially, the groupOverview state should be set to empty groups 
   // s.t. placeholders can be shown.
   const [firstClick, setFirstClick] = useState(true);  // The draw button should only scroll on the first drawn club.
 
@@ -93,8 +93,8 @@ const SimulationOverview = () => {
 
   const drawClub = (quick: boolean) => {
     if (quick) {
-      scrollToResults()
       setGroupOverview([...simulation.quickSimulation()]) // Otherwise React doesn't see the state as updated as arrays are checked by reference.
+      scrollToResults()
     
     } else {
       setGroupOverview([...simulation.runSimulationStep()]) // Otherwise React doesn't see the state as updated as arrays are checked by reference.
