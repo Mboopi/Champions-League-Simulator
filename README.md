@@ -15,6 +15,7 @@ It currently only supports the draw of the group stage as the season hasn't star
 
 ### Future work / improvements
 - Take into account the pairings as described above.
+- Currently not completely sure how draw colissions should be handled, so the simulator might redo the draw sometimes.
 - Add more animations to make the site more fluid and lively.
 - Improve the UI for mobile devices.
 - Add options for previous years and KO stages.
