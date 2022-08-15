@@ -71,10 +71,10 @@ const renderAllGroups = (groups: Array<GroupType>) => {
 
 const SimulationOverview = () => {
   const [groupOverview, setGroupOverview] = useState(Array<GroupType>);  // Track the state of the groups.
-
   const [firstLoad, setFirstLoad] = useState(true);  // Initially, the groupOverview state should be set to empty groups 
   // s.t. placeholders can be shown.
   const [firstClick, setFirstClick] = useState(true);  // The draw button should only scroll on the first drawn club.
+  const [resultsOpacity, setResultsOpacity] = useState(1);
 
   const resultsRef = useRef<HTMLDivElement>(null);
 
@@ -87,6 +87,18 @@ const SimulationOverview = () => {
     }
   }, [firstLoad])
 
+  useEffect(() => {
+    if (firstLoad && firstClick) {
+      setResultsOpacity(0)
+
+    } else {
+      const timer = setTimeout(() => {
+        clearTimeout(timer);
+        setResultsOpacity(1)
+      }, 250)
+    }
+  })
+
   const scrollToResults = () => {
     resultsRef.current?.scrollIntoView({ behavior: 'smooth' });
   }
@@ -95,7 +107,7 @@ const SimulationOverview = () => {
     if (quick) {
       setGroupOverview([...simulation.quickSimulation()]) // Otherwise React doesn't see the state as updated as arrays are checked by reference.
       scrollToResults()
-    
+
     } else {
       setGroupOverview([...simulation.runSimulationStep()]) // Otherwise React doesn't see the state as updated as arrays are checked by reference.
 
@@ -107,7 +119,7 @@ const SimulationOverview = () => {
   };
 
   return (
-    <div ref={resultsRef}>
+    <div ref={resultsRef} >
       <Button onClick={() => drawClub(false)} variant='outline-light' style={style.button} disabled={simulation.isDone}>
         Draw club
       </Button>
@@ -126,9 +138,9 @@ const SimulationOverview = () => {
       >
         Reset
       </Button>
+      {groupOverview.length > 0 && <hr style={{ height: 2 }} />}
 
-      <div style={{ marginTop: 10 }} >
-        {groupOverview.length > 0 && <hr style={{ height: 2 }} />}
+      <div style={{ marginTop: 10, opacity: resultsOpacity, transition: 'opacity 0.1s' }} >
         {groupOverview.length > 0 && renderAllGroups(groupOverview)}
       </div>
     </div>
