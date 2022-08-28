@@ -12,32 +12,38 @@ const simulation = new Simulation(data_2022.group_stage);
 
 const style = {
   button: {
-    marginRight: 10, borderRadius: 15
-  }
-}
+    marginRight: 10,
+    borderRadius: 15,
+  },
+};
 
 const renderGroup = (group: GroupType) => {
-  let clubs: ClubType[] = []
-  const GROUP_SIZE = 4
+  let clubs: ClubType[] = [];
+  const GROUP_SIZE = 4;
 
   for (let i = 0; i < GROUP_SIZE; i++) {
-    clubs.push(group.getClubs()[i] || new Club('...', 'N/A', 0))
+    clubs.push(group.getClubs()[i] || new Club('...', 'N/A', 0));
   }
 
   return clubs.map((club: ClubType, i: number) => {
     return (
       <Row key={i}>
         <p style={{ fontSize: GlobalStyle.CONSTANTS.clubFontSize }}>
-          <Flag width={GlobalStyle.CONSTANTS.clubFlagWidth} code={getCountryCode(club.getCountry())} style={GlobalStyle.flag} />
-          {club.getName()}</p>
+          <Flag
+            width={GlobalStyle.CONSTANTS.clubFlagWidth}
+            code={getCountryCode(club.getCountry())}
+            style={GlobalStyle.flag}
+          />
+          {club.getName()}
+        </p>
       </Row>
-    )
-  })
-}
+    );
+  });
+};
 
 const renderAllGroups = (groups: Array<GroupType>) => {
-  const groupsFirst = ['A', 'B', 'C', 'D']  // Groups before the divider.
-  const groupsSecond = ['E', 'F', 'G', 'H']  // Groups after the divider.
+  const groupsFirst = ['A', 'B', 'C', 'D']; // Groups before the divider.
+  const groupsSecond = ['E', 'F', 'G', 'H']; // Groups after the divider.
 
   return (
     <>
@@ -48,9 +54,8 @@ const renderAllGroups = (groups: Array<GroupType>) => {
               <b>Group {name}</b>
               {renderGroup(groups[index])}
             </Col>
-          )
-        })
-        }
+          );
+        })}
       </Row>
       <hr />
       <Row>
@@ -60,24 +65,22 @@ const renderAllGroups = (groups: Array<GroupType>) => {
               <b>Group {name}</b>
               {renderGroup(groups[index + groupsFirst.length])}
             </Col>
-          )
-        })
-        }
+          );
+        })}
       </Row>
     </>
-  )
-}
-
+  );
+};
 
 const SimulationOverview = () => {
-  const [groupOverview, setGroupOverview] = useState(Array<GroupType>);  // Track the state of the groups.
-  const [firstLoad, setFirstLoad] = useState(true);  // Initially, the groupOverview state should be set to empty groups 
+  const [groupOverview, setGroupOverview] = useState(Array<GroupType>); // Track the state of the groups.
+  const [firstLoad, setFirstLoad] = useState(true); // Initially, the groupOverview state should be set to empty groups
   // s.t. placeholders can be shown.
-  const [firstClick, setFirstClick] = useState(true);  // The draw button should only scroll on the first drawn club.
-  const [fullDrawn, setFullDrawn] = useState(false);  // Variable for determining when to run to fading animation.
-  const [resultsOpacity, setResultsOpacity] = useState(1);  // Current opacity.
+  const [firstClick, setFirstClick] = useState(true); // The draw button should only scroll on the first drawn club.
+  const [fullDrawn, setFullDrawn] = useState(false); // Variable for determining when to run to fading animation.
+  const [resultsOpacity, setResultsOpacity] = useState(1); // Current opacity.
 
-  const time = 250;  // Timer in ms.
+  const time = 250; // Timer in ms.
 
   const resultsRef = useRef<HTMLDivElement>(null);
 
@@ -88,7 +91,7 @@ const SimulationOverview = () => {
       setGroupOverview([...simulation.groups]);
       setFirstLoad(false);
     }
-  }, [firstLoad])
+  }, [firstLoad]);
 
   // Depending on the states, adjust the opacity for the fading animation of the results.
   useEffect(() => {
@@ -98,20 +101,20 @@ const SimulationOverview = () => {
       const timer = setTimeout(() => {
         clearTimeout(timer);
         setResultsOpacity(1);
-      }, time)
+      }, time);
     }
-  }, [firstLoad, firstClick, fullDrawn])
+  }, [firstLoad, firstClick, fullDrawn]);
 
   // Idem
   useEffect(() => {
     if (fullDrawn) {
       setFullDrawn(false);
     }
-  }, [fullDrawn])
+  }, [fullDrawn]);
 
   const scrollToResults = () => {
     resultsRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }
+  };
 
   const drawClub = (quick: boolean) => {
     if (quick) {
@@ -119,12 +122,10 @@ const SimulationOverview = () => {
 
       const timer = setTimeout(() => {
         clearTimeout(timer);
-        setGroupOverview([...simulation.quickSimulation()]);  // Otherwise React doesn't see the state as updated as arrays are checked by reference.
-
-      }, time)
+        setGroupOverview([...simulation.quickSimulation()]); // Otherwise React doesn't see the state as updated as arrays are checked by reference.
+      }, time);
 
       scrollToResults();
-
     } else {
       setGroupOverview([...simulation.runSimulationStep()]); // Otherwise React doesn't see the state as updated as arrays are checked by reference.
 
@@ -136,11 +137,21 @@ const SimulationOverview = () => {
   };
 
   return (
-    <div ref={resultsRef} >
-      <Button onClick={() => drawClub(false)} variant='outline-light' style={style.button} disabled={simulation.isDone}>
+    <div ref={resultsRef}>
+      <Button
+        onClick={() => drawClub(false)}
+        variant="outline-light"
+        style={style.button}
+        disabled={simulation.isDone}
+      >
         Draw club
       </Button>
-      <Button onClick={() => drawClub(true)} variant='outline-light' style={style.button} disabled={simulation.isDone}>
+      <Button
+        onClick={() => drawClub(true)}
+        variant="outline-light"
+        style={style.button}
+        disabled={simulation.isDone}
+      >
         Full draw
       </Button>
       <Button
@@ -158,7 +169,13 @@ const SimulationOverview = () => {
       </Button>
       {groupOverview.length > 0 && <hr style={{ height: 2 }} />}
 
-      <div style={{ marginTop: 10, opacity: resultsOpacity, transition: 'opacity ease-out 0.15s' }} >
+      <div
+        style={{
+          marginTop: 10,
+          opacity: resultsOpacity,
+          transition: 'opacity ease-out 0.15s',
+        }}
+      >
         {groupOverview.length > 0 && renderAllGroups(groupOverview)}
       </div>
     </div>

@@ -8,7 +8,7 @@ const Header = () => {
     <div>
       <Image src={Logo} width={125} style={GlobalStyle.headerImage} />
       <p style={GlobalStyle.pageTitle}>CL SIMULATOR</p>
-      <p style={GlobalStyle.pageSubTitle}>Group Stage 2022/23</p>
+      <p style={GlobalStyle.pageSubTitle}>GROUP STAGE 2022/23</p>
     </div>
   );
 };

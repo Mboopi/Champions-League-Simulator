@@ -3,6 +3,7 @@ import background from './../assets/background2_upscaled.jpg';
 const TextCol = '#FFFFFF';
 const defaultRadius = 15;
 const defaultShadow = '0px 0px 10px blue';
+const titleColor = 'rgb(111, 160, 250)';
 
 const GlobalStyle = {
   defaultLayout: {
@@ -19,14 +20,15 @@ const GlobalStyle = {
     fontSize: 45,
     textAlign: 'center' as 'center',
     marginBottom: -5,
-    textShadow: defaultShadow,
+    // textShadow: defaultShadow,
   },
   pageSubTitle: {
     fontWeight: 'bold' as 'bold',
     fontSize: 25,
     textAlign: 'center' as 'center',
     marginBottom: 30,
-    textShadow: defaultShadow,
+    // textShadow: defaultShadow,
+    color: titleColor,
   },
   cardTitle: {
     fontWeight: 'bold' as 'bold',
@@ -79,7 +81,7 @@ const GlobalStyle = {
       right: 0,
     },
     text: {
-      textShadow: defaultShadow,
+      // textShadow: defaultShadow,
       textAlign: 'center' as 'center',
       fontSize: 9,
       marginTop: -10,
@@ -89,11 +91,12 @@ const GlobalStyle = {
     marginTop: -3,
     marginLeft: -7,
     marginRight: -7,
-    color: 'white',
+    color: titleColor,
   },
   CONSTANTS: {
     clubFlagWidth: 14,
     clubFontSize: 12,
+    titleColor: titleColor,
   },
 };
 

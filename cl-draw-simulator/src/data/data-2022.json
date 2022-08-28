@@ -6,12 +6,12 @@
             "pot": 1
         },
         {
-            "club_name": "Eintracht Frankfurt",
+            "club_name": "Frankfurt",
             "country": "Germany",
             "pot": 1
         },
         {
-            "club_name": "Manchester City",
+            "club_name": "Man City",
             "country": "England",
             "pot": 1
         },
@@ -26,7 +26,7 @@
             "pot": 1
         },
         {
-            "club_name": "Paris Saint-Germain",
+            "club_name": "PSG",
             "country": "France",
             "pot": 1
         },
@@ -61,7 +61,7 @@
             "pot": 2
         },
         {
-            "club_name": "Atlético Madrid",
+            "club_name": "Atlético",
             "country": "Spain",
             "pot": 2
         },
@@ -76,12 +76,12 @@
             "pot": 2
         },
         {
-            "club_name": "Tottenham Hotspur",
+            "club_name": "Tottenham",
             "country": "England",
             "pot": 2
         },
         {
-            "club_name": "Borussia Dortmund",
+            "club_name": "Dortmund",
             "country": "Germany",
             "pot": 3
         },
@@ -91,12 +91,12 @@
             "pot": 3
         },
         {
-            "club_name": "Shaktar Donetsk",
+            "club_name": "Shaktar",
             "country": "Ukraine",
             "pot": 3
         },
         {
-            "club_name": "Internazionale",
+            "club_name": "Inter",
             "country": "Italy",
             "pot": 3
         },
@@ -111,17 +111,17 @@
             "pot": 3
         },
         {
-            "club_name": "Sporting CP",
+            "club_name": "Sporting",
             "country": "Portugal",
             "pot": 3
         },
         {
-            "club_name": "Bayer Leverkussen",
+            "club_name": "Leverkussen",
             "country": "Germany",
             "pot": 3
         },
         {
-            "club_name": "Olympique Marseille",
+            "club_name": "Marseille",
             "country": "France",
             "pot": 4
         },
@@ -136,12 +136,12 @@
             "pot": 4
         },
         {
-            "club_name": "FC Kopenhagen",
+            "club_name": "Copenhagen",
             "country": "Denmark",
             "pot": 4
         },
         {
-            "club_name": "Rangers FC",
+            "club_name": "Rangers",
             "country": "Scotland",
             "pot": 4
         },
@@ -156,7 +156,7 @@
             "pot": 4
         },
         {
-            "club_name": "Dinamo Zagreb",
+            "club_name": "Dinamo",
             "country": "Czech Republic",
             "pot": 4
         }
