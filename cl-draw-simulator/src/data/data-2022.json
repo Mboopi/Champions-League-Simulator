@@ -121,33 +121,8 @@
             "pot": 3
         },
         {
-            "club_name": "Rangers FC",
-            "country": "Scotland",
-            "pot": 4
-        },
-        {
-            "club_name": "Dinamo Zagreb",
-            "country": "Croatia",
-            "pot": 4
-        },
-        {
-            "club_name": "Red Star Belgrade",
-            "country": "Serbia",
-            "pot": 4
-        },
-        {
             "club_name": "Olympique Marseille",
             "country": "France",
-            "pot": 4
-        },
-        {
-            "club_name": "Olympiacos",
-            "country": "Greece",
-            "pot": 4
-        },
-        {
-            "club_name": "FC Kopenhagen",
-            "country": "Denmark",
             "pot": 4
         },
         {
@@ -158,6 +133,31 @@
         {
             "club_name": "Celtic",
             "country": "Scotland",
+            "pot": 4
+        },
+        {
+            "club_name": "FC Kopenhagen",
+            "country": "Denmark",
+            "pot": 4
+        },
+        {
+            "club_name": "Rangers FC",
+            "country": "Scotland",
+            "pot": 4
+        },
+        {
+            "club_name": "Maccabi Haifa",
+            "country": "Israel",
+            "pot": 4
+        },
+        {
+            "club_name": "Viktoria Plzen ",
+            "country": "Belgium",
+            "pot": 4
+        },
+        {
+            "club_name": "Dinamo Zagreb",
+            "country": "Czech Republic",
             "pot": 4
         }
     ]
